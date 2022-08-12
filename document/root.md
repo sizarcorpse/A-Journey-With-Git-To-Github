@@ -1,12 +1,13 @@
 # A Journey With Git To GitHub
 
+[👨‍🎓 sizar corpse](https://github.com/sizarcorpse) | [👨‍🚀 ramiz imran sizar](https://github.com/ramizimran)
+
 ## 🌍 Git Configuration
 
-```bash
+````bash
 # Check git configuration
 git config --list
 git config -l
-```
 
 ```bash
 # Set git configuration
@@ -20,7 +21,7 @@ git config --global users.email "<email>"
 
 #check credentials
 git config --global credential.helper cache
-```
+````
 
 ```bash
 # Set global editor
@@ -77,7 +78,7 @@ git add <file> <file>
 git add *.txt
 ```
 
-## 📦 Committing Staged
+## 📦 Committing StagedW
 
 ```bash
 
