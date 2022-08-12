@@ -2,26 +2,36 @@
 
 [👨‍🎓 sizar corpse](https://github.com/sizarcorpse) | [👨‍🚀 ramiz imran sizar](https://github.com/ramizimran)
 
+This document covers every basic command you need to do the vast majority of the things you’ll eventually spend your time doing with Git. By the end of the document, you should be able to configure and initialize a repository, begin and stop tracking files, and stage and commit changes.This document also show you how to set up Git to ignore certain files and file patterns, how to undo mistakes quickly and easily, how to browse the history of your project and view changes between commits, and how to push and pull from remote repositories.
+
 ## 🌍 Git Configuration
 
-````bash
+```bash
+# View all of settings
+git config -list --show-origin
+
 # Check git configuration
 git config --list
 git config -l
 
-```bash
 # Set git configuration
 # Set global configuration
 
-#name
+#set name
 git config --global users.name "<name>"
 
-#email
+# get name
+git config users.name
+
+#set email
 git config --global users.email "<email>"
+
+#get email
+git config users.email
 
 #check credentials
 git config --global credential.helper cache
-````
+```
 
 ```bash
 # Set global editor
@@ -48,14 +58,24 @@ git config --global diff.toolvscode.cmd "code-insiders --wait --diff $LOCAL $REM
 #Note: after setup difftool, use "git difftool" instead of "git diff"
 ```
 
-## 🚩 Initializing
+```bash
+# Set Default Branch Name for
+git config --global init.defaultBranch main
+```
+
+## 🚩 Initializing a Repository
 
 ```bash
 #Initializing an existing directory as a Git repository
 git init
 
-#Clone/Retrieve an entire repository from via URL
+#Clone/Retrieve an entire existing repository from via URL
 git clone <url>
+
+#With desire name
+git clone <url> <name>
+# Note:That command does the same thing as the previous one, but the target directory is called <name>.
+
 ```
 
 ## 🚚 Creating Snapshots and Staging
@@ -64,6 +84,10 @@ git clone <url>
 
 #Show the status of the current repository including staged, unstated, and untracked files
 git status
+
+#Show the status of the current repository including staged, unstated, and untracked files
+git status -s
+# ?? = untracked files, M = modified files, A = added files, D = deleted files, R = renamed files, C = copied files, U = updated files, ! = ignored files
 
 #Add all files and folders recursively to the staging area
 git add .
@@ -78,7 +102,33 @@ git add <file> <file>
 git add *.txt
 ```
 
-## 📦 Committing StagedW
+## Git Ignore
+
+```bash
+# Create a .gitignore file
+.gitignore
+
+#Examine the contents of the .gitignore file
+# #ignore all .a files
+# *.a
+
+# #but do track lib.a, even though you're ignoring .a files above
+# !lib.a
+
+# #only ignore the TODO file in the current directory, not subdir/TODO
+# /TODO
+
+# #ignore all files in any directory named build
+# build/
+
+# #ignore doc/notes.txt, but not doc/server/arch.txt
+# doc/*.txt
+
+# #ignore all .pdf files in the doc/ directory and any of its subdirectories
+# doc/**/*.pdf
+```
+
+## 📦 Committing Staged
 
 ```bash
 
