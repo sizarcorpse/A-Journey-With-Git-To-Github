@@ -17,19 +17,19 @@ git config -l
 # Set git configuration
 # Set global configuration
 
-#set name
+# Set name
 git config --global users.name "<name>"
 
-# get name
+# Get name
 git config users.name
 
-#set email
+# Set email
 git config --global users.email "<email>"
 
-#get email
+# Get email
 git config users.email
 
-#check credentials
+# Check credentials
 git config --global credential.helper cache
 ```
 
@@ -66,15 +66,22 @@ git config --global init.defaultBranch main
 ## 🚩 Initializing a Repository
 
 ```bash
-#Initializing an existing directory as a Git repository
+# Initializing an existing directory as a Git repository
 git init
 
-#Clone/Retrieve an entire existing repository from via URL
+# Clone/Retrieve an entire existing repository from via URL
 git clone <url>
 
-#With desire name
+# With desire name
 git clone <url> <name>
 # Note:That command does the same thing as the previous one, but the target directory is called <name>.
+
+# With desire remote name
+git clone -o <name>
+
+#Both desire remote name and directory name
+git clone -o <name> <url> <name>
+# Ex:git clone -o '<remote-name>' https://github.com/<author>/welcome-to-github <directory-name>
 
 ```
 
@@ -82,23 +89,23 @@ git clone <url> <name>
 
 ```bash
 
-#Show the status of the current repository including staged, unstated, and untracked files
+# Show the status of the current repository including staged, unstated, and untracked files
 git status
 
-#Show the status of the current repository including staged, unstated, and untracked files
+# Show the status of the current repository including staged, unstated, and untracked files
 git status -s
 # ?? = untracked files, M = modified files, A = added files, D = deleted files, R = renamed files, C = copied files, U = updated files, ! = ignored files
 
-#Add all files and folders recursively to the staging area
+# Add all files and folders recursively to the staging area
 git add .
 
-#Add single file to the staging area
+# Add single file to the staging area
 git add <file>
 
-#Add multiple files to the staging area
+# Add multiple files to the staging area
 git add <file> <file>
 
-#Add all files with a specific extension to the staging area
+# Add all files with a specific extension to the staging area
 git add *.txt
 ```
 
@@ -108,7 +115,7 @@ git add *.txt
 # Create a .gitignore file
 .gitignore
 
-#Examine the contents of the .gitignore file
+# Examine the contents of the .gitignore file
 # #ignore all .a files
 # *.a
 
@@ -132,164 +139,275 @@ git add *.txt
 
 ```bash
 
-#Commit all staged files with long commit message
+# Commit all staged files with long commit message
 git commit
 
-#Commit all staged files with a specific message
+# Commit and show the Diff of your change
+git commit -v
+
+# Commit all staged files with a specific message
 git commit -m "Initial commit"
 
-#Commit all staged files without staging
+# Commit all staged files without staging
 git commit -a -m "Initial commit"
 git commit -am "Initial commit"
 
-#Show a specific commit
+# Show a specific commit
 git show commit-id
 ```
 
 ## 🔭 Browsing Commit History
 
 ```bash
-#Show commit history of the current repository
+# Show commit history of the current repository(current branch)
 git log
 
-#Show commit history including all files and their changes
+# Show commit history of the current repository(all branches)
+git log --all
+
+# Show commit history including all files and their changes
 git log -p
 
-#Show commit history by one line
+# Show commit history by one line
 git log --oneline
+git log --oneline --decorate
 
-#Reverse order
+# Reverse order
 git log --reverse
 
-#With reflog
+# With reflog
 git --reflog
 
-#Show commit history with a specific number of commits
+# Show commit history with a specific number of commits
 git log -n 5
 git log 5
 #Note: Shows the last 5 commits
 
-#Show some statistics about the changes in each commit.
+# Show some statistics about the changes in each commit.
 git log --stat
 
-#Show commit log as a graph
+# Show commit log as a graph
 git log --graph
-#One line
+# One line
 git log --graph --oneline
-#All
+# All
 git log --all --graph --oneline
+```
+
+```bash
+# git log
+
+# -p = show changes in each commit
+# -n = show n commits
+# --stat = show statistics about the changes in each commit
+# --graph = show commit log as a graph
+# --oneline = show commit log as one line
+# --reverse = reverse order
+# --shortstat = only the changed/insertions/deletions line from the --stat command
+# --name-only = only show the names of the files that were changed
+# --name-status = show the names of the files that were changed and their status
+# --decorate = show commit log with colors and other decorations
+
+
+# Git log Limiting the output
+
+# -n = show n commits
+# --since, --after = show commits after the date
+# --until, --before = show commits before the date
+# --author = show commits by the author
+# --committer = show commits by the committer
+# --grep = show commits that match the pattern
+# -S = show the search pattern in the commit message
+# Ex : git log --pretty="%h - %s" --author='<author>' --since="2021-10-01" --before="2022-11-01"
+```
+
+```bash
+# Using Pretty
+git log --pretty=oneline
+
+# Using Pretty Format
+git log --pretty=format:"%h %an %s"
+git log --pretty="%h %an %s"
+
+# %H  = Commit hash
+# %h  = Abbreviated commit hash
+# %T  = Tree hash
+# %t  = Abbreviated tree hash
+# %P  = Parent hashes
+# %p  = Abbreviated parent hashes
+# %an = Author name
+# %ae = Author email
+# %ad = Author date (format respects the --date=option)
+# %ar = Author date, relative
+# %cn = Committer name
+# %ce = Committer email
+# %cd = Committer date
+# %cr = Committer date, relative
+# %s  = Subject
+
+# Using Pretty and Graph
+git log --pretty=format:"%h %an %s" --graph
 ```
 
 ## 🥼 Diff whats changes on before commit (staged or un-staged)
 
 ```bash
-#Show changes on before commit(un-staged)
+# Show changes on before commit(un-staged)
 git diff
-#Note: difference between staged and un-staged changes
+# Note: difference between staged and un-staged changes
 
-#Show changes on before commit(staged)
+# Show changes on before commit(staged)
 git diff --staged
-#Note: difference between staged changes and last commit
+# Note: difference between staged changes and last commit
 
-#Specify a file to show changes on before commit(un-staged)
+# Specify a file to show changes on before commit(un-staged)
 git diff <file>
 
-#Specify a file to show changes on before commit(staged)
+# Specify a file to show changes on before commit(staged)
 git diff --staged <file>
 
-#SHow Diff on vscode
+# Show Diff on vscode
 git difftool
 git difftool --staged
-#Note:is no difference than vscode will now show
-#Note:difftool setting above "Git Configuration" section
+# Note:is no difference than vscode will now show
+# Note:difftool setting above "Git Configuration" section
 
-#Using with cached
+# Using with cached
 git diff --cached
 git difftool --cached
-#Note:(--staged and --cached are synonyms)
+# Note:(--staged and --cached are synonyms)
 
-#Show differences between two branches
+# Show differences between two branches
 git diff <branch> <branch>
 ```
 
-## 🗑 Remove files
+## 🗑 Remove, Move & Rename files
 
 ```bash
-#Remove a file from the staging area and working dir
+# Remove a file from the staging area and working dir
 git rm <file>
 
-#Remove a file from the staging area
+# Remove a file from the staging area
 git rm --cached <file>
 
-#Remove a fils and whole directory from the staging area
+# Remove a fils and whole directory from the staging area
 git rm -r <directory>
-#Note: -r is recursive
+# Note: -r is recursive
 
-#Rename a file from the staging area and working dir
+# Rename a file from the staging area and working dir
 git mv <file> <file>.txt
 ```
 
 ## 📝Revert & Reset files from the staging area
 
 ```bash
-#Undo / revert un-staged changes on a file
+# Undo / revert un-staged changes on a file
 git checkout <file>
 git checkout
 
-#Undo / revert last staged file
+# Undo / revert last staged file
 git reset HEAD <file>
-#All files
+# All files
 git reset HEAD
 
-#Amend the most recent commit
-git commit --amend
-#With new message
-git commit --amend -m "New message"
+# Unstaging a Staged File with git restore(staged)
+git restore --staged <file>
 
-#Undo / revert last commit
+# Unmodified a Modified File with git restore(un-staged)
+git restore <file>
+# NOTE: Use restore instead of checkout and reset
+
+# Undo / revert last commit
 git revert HEAD
-#with message
-git revert HEAD -m "New message"
+# With message
+git revert HEAD -m <message>
 
-#Revert an old commit
+# Amend the most recent commit
+git commit --amend
+# With new message
+git commit --amend -m <message>
+
+# Revert an old commit
 git revert commit-id
 ```
 
 ## 🧰 Branching
 
 ```bash
-#Show all branches
+# Show all branches
 git branch
 
 # Remote branches that Git is tracking
 git branch -r
 
-#Create a new branch
+# Show each branch tracking a remote branch
+git branch -vv
+
+# Create a new branch
 git branch <branch>
 
-#Switch to a new branch
+# Switch to a new branch
 git checkout <branch>
+git switch <branch>
+# NOTE: Use switch instead of checkout
 
-#Create and switch to a new branch
+# Return to the previous branch
+git switch -
+
+# Create and switch to a new branch
 git checkout -b <branch>
 
-#Delete a branch
+# With Switch
+git switch -c <branch>
+# Note: -c is for create
+
+# Delete a branch
 git branch -d <branch>
 git branch --delete <branch>
+
+# Show branches that are not not merging with current branch
+git branch --no-merged
+git branch --merge
+
+# Rename a branch(local)
+git branch -m <branch> <branch>
+# Ex: git branch -m <old branch> <new branch>
+
+# Rename a branch(remote)
+git push -u origin <branch>
+# Ex: git push -u origin <new branch>
+# NOTE: old branch will not be deleted, it will be present in the remote too besides the renamed branch. Now delete the old branch.
+git push origin --delete <branch>
+# Ex: git push origin --delete <old branch>
 ```
 
 ## 🎎 Merging branch
 
 ```bash
-#Merge a branch into the current branch
+# Merge a branch into the current branch
 git merge <branch>
 
-#Abort a conflicted merge
+# Abort a conflicted merge
 git merge --abort
 
-#Merge a remote repo with local repo
+# Merge a remote repo with local repo
 git merge <remote|alias>/<branch>
-#Ex: git merge origin/main
+# Ex: git merge origin/main
+```
+
+## Tracking branches
+
+```bash
+# Track a remote branch
+git branch --track <branch> <remote>/<branch>
+# Ex: git branch --track main origin/main
+
+# Switch to a tracked branch
+git checkout <branch>
+
+# Track and Switch
+git checkout -b <branch> <remote>/<branch>
+# Ex:git checkout -b main origin/main
 ```
 
 ## ⛅ Remote Repositories
@@ -306,11 +424,12 @@ git remote add <alias> <url>
 # Rename remote repository
 git remote rename old-name new-name
 
-# Remove a remote repository
+# Remove a remote
 git remote rm <remote|alias>
 
 # More information about a remote repository
 git remote show <remote|alias>
+git ls-remote <remote|alias>
 
 # Delete a remote branch
 git push --delete <remote|alias> <branch>
@@ -339,6 +458,9 @@ git pull
 ```bash
 # Fetch all changes from a remote repository
 git fetch
+
+# fetch from all remotes
+git fetch --all
 ```
 
 ## 🧨 Update Remote
@@ -353,4 +475,46 @@ git remote update
 ```bash
 # Rebase a branch onto another branch
 git rebase <branch>
+```
+
+## Git Tag
+
+```bash
+# Show all tags
+git tag
+git tag -l
+
+# Add a new tag to the current commit(Annotated Tag)
+git tag -a <tag> -m <message>
+
+# Add a new tag to the current commit(Lightweight Tag)
+git tag <tag>
+
+# Add and tag to specific commits
+git tag -a <tag> -m <message> <commit>
+
+# Push tags to remote repository
+git push <remote> <tag>
+
+# push All tags to remote repository
+git push <remote> --tags
+
+# Push all tags to remote repository (Annotated Tag only)
+git push <remote> --follow-tags
+
+# Delete a Tag (local only)
+git tag -d <tag>
+
+# Delete a Tag (remote only)
+git push <remote> --delete <tag>
+git push <remote> :refs/tags/<tag>
+
+# Checkout a Tag
+git checkout <tag>
+
+# Create a new branch from a tag
+git switch -c <branch>
+
+# Switch to a Tag
+git checkout <tag>
 ```
