@@ -29,7 +29,7 @@ git config --global users.email "<email>"
 # Get email
 git config users.email
 
-# Check credentials
+# Cache credentials
 git config --global credential.helper cache
 ```
 
@@ -69,6 +69,7 @@ git config --global init.defaultBranch main
 # Initializing an existing directory as a Git repository
 git init
 
+
 # Clone/Retrieve an entire existing repository from via URL
 git clone <url>
 
@@ -82,7 +83,6 @@ git clone -o <name>
 #Both desire remote name and directory name
 git clone -o <name> <url> <name>
 # Ex:git clone -o '<remote-name>' https://github.com/<author>/welcome-to-github <directory-name>
-
 ```
 
 ## 🚚 Creating Snapshots and Staging
@@ -91,6 +91,7 @@ git clone -o <name> <url> <name>
 
 # Show the status of the current repository including staged, unstated, and untracked files
 git status
+
 
 # Show the status of the current repository including staged, unstated, and untracked files
 git status -s
@@ -277,7 +278,14 @@ git diff --cached
 git difftool --cached
 # Note:(--staged and --cached are synonyms)
 
+
 # Show differences between two branches
+
+#Using with cached
+git diff --cached
+git difftool --cached
+#Note:(--staged and --cached are synonyms)
+
 git diff <branch> <branch>
 ```
 
