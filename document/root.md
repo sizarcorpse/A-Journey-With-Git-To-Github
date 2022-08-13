@@ -4,7 +4,7 @@
 
 This document covers every basic command you need to do the vast majority of the things you’ll eventually spend your time doing with Git. By the end of the document, you should be able to configure and initialize a repository, begin and stop tracking files, and stage and commit changes.This document also show you how to set up Git to ignore certain files and file patterns, how to undo mistakes quickly and easily, how to browse the history of your project and view changes between commits, and how to push and pull from remote repositories.
 
-## 🌍 Git Configuration
+## 🌌 Git Configuration
 
 ```bash
 # View all of settings
