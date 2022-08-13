@@ -55,7 +55,7 @@ git config --global core.autocrlf input
 # Set Diff Tools
 git config --global diff.tool vscode
 git config --global diff.toolvscode.cmd "code-insiders --wait --diff $LOCAL $REMOTE"
-#Note: after setup difftool, use "git difftool" instead of "git diff"
+# Note: after setup difftool, use "git difftool" instead of "git diff"
 ```
 
 ```bash
@@ -485,7 +485,7 @@ git remote update
 git rebase <branch>
 ```
 
-## Git Tag
+## 🔖Git Tag
 
 ```bash
 # Show all tags
