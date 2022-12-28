@@ -339,6 +339,32 @@ git commit --amend -m <message>
 git revert commit-id
 ```
 
+```bash
+# Stash your changes so you can add them to a different branch.
+git stash
+
+# View all stashed list
+git stash list
+
+# Bring back stash back.
+git stash pop
+
+# Add the latest stash while keeping it in the list
+git stash apply
+
+# View a condensed version or files of the changes in the latest stash
+git stash show
+git stash show -p
+
+# View specific stash `stash@{0}`.
+git stash show <stash_name>
+git stash show stash@{1}
+
+# Drop Stash
+git stash drop
+git stash drop <stash_name>
+```
+
 ## 🧰 Branching
 
 ```bash
@@ -483,6 +509,10 @@ git remote update
 ```bash
 # Rebase a branch onto another branch
 git rebase <branch>
+git rebase main
+
+# Continue rebasing
+git rebase --continue
 ```
 
 ## 🔖Git Tag
