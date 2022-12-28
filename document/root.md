@@ -155,6 +155,7 @@ git commit -am "Initial commit"
 
 # Show a specific commit
 git show commit-id
+git show HEAD~1
 ```
 
 ## 🔭 Browsing Commit History
@@ -339,6 +340,10 @@ git commit --amend -m <message>
 git revert commit-id
 ```
 
+TODO: Different between `git reset` and `git revert` and `git restore`
+
+## 🗑 Stash staging
+
 ```bash
 # Stash your changes so you can add them to a different branch.
 git stash
@@ -513,6 +518,23 @@ git rebase main
 
 # Continue rebasing
 git rebase --continue
+
+#Manipulate commits
+git rebase --interactive HEAD~2
+# note: HEAD~2 means you will have a chance to change the last two commits.
+# note: it will open with nano.
+# pick => use commit,
+# d drop => remove commit,
+# r reword => use commit but edit commit message,
+# s squash => use commit but meld into previous commit
+
+# Manipulate all commits
+git rebase --interactive --root
+# note: When you rebase interactively it changes all those `hashes`, so git sees them as different commits. If you were to try and `merge` this into `main`, it wouldn't work because they don't share the same history anymore. For this reason, you don't want to do an interactive rebase where you go back passed commits unique to the `branch` you are on.
+
+# Squashing commits will take a bunch of commits and turn them into one.
+
+
 ```
 
 ## 🔖Git Tag
