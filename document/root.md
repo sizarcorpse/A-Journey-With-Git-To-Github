@@ -156,6 +156,9 @@ git commit -am "Initial commit"
 # Show a specific commit
 git show commit-id
 git show HEAD~1
+
+# Commit stage interactively / partially
+git commit -p
 ```
 
 ## 🔭 Browsing Commit History
@@ -338,6 +341,11 @@ git commit --amend -m <message>
 
 # Revert an old commit
 git revert commit-id
+
+# Remove/Delete commit without message/ extra commit
+# -n, --no-commit don't automatically commit
+git revert -n head
+git revert -n master~5..master~2
 ```
 
 TODO: Different between `git reset` and `git revert` and `git restore`
