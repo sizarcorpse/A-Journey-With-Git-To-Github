@@ -4,6 +4,33 @@
 
 This document covers every basic command you need to do the vast majority of the things you’ll eventually spend your time doing with Git. By the end of the document, you should be able to configure and initialize a repository, begin and stop tracking files, and stage and commit changes.This document also show you how to set up Git to ignore certain files and file patterns, how to undo mistakes quickly and easily, how to browse the history of your project and view changes between commits, and how to push and pull from remote repositories.
 
+<!-- table of content -->
+
+## 📖 Table of Contents
+
+- [A Journey With Git To GitHub](#a-journey-with-git-to-github)
+  - [📖 Table of Contents](#-table-of-contents)
+  - [🌌 Git Configuration](#-git-configuration)
+  - [🚩 Initializing a Repository](#-initializing-a-repository)
+  - [🚚 Creating Snapshots and Staging](#-creating-snapshots-and-staging)
+  - [Git Ignore](#git-ignore)
+  - [📦 Committing Staged](#-committing-staged)
+  - [🔭 Browsing Commit History](#-browsing-commit-history)
+  - [🥼 Diff whats changes on before commit (staged or un-staged)](#-diff-whats-changes-on-before-commit-staged-or-un-staged)
+  - [🗑 Remove, Move \& Rename files](#-remove-move--rename-files)
+  - [📝Revert \& Reset files from the staging area](#revert--reset-files-from-the-staging-area)
+  - [🗑 Stash staging](#-stash-staging)
+  - [🧰 **`git branch`**](#-git-branch)
+    - [🎎 Merge branch](#-merge-branch)
+    - [🤖 Remote Branch: Tracking, Deleting, Renaming](#-remote-branch-tracking-deleting-renaming)
+  - [⛅ Remote Repositories](#-remote-repositories)
+  - [🚀 Push Repositories](#-push-repositories)
+  - [🧯 Pull](#-pull)
+  - [🚓 Fetch Repositories](#-fetch-repositories)
+  - [🧨 Update Remote](#-update-remote)
+  - [🏤 Git Rebase](#-git-rebase)
+  - [🔖Git Tag](#git-tag)
+
 ## 🌌 Git Configuration
 
 ```bash
@@ -378,20 +405,44 @@ git stash drop
 git stash drop <stash_name>
 ```
 
-## 🧰 Branching
+## 🧰 **`git branch`**
 
 ```bash
 # Show all branches
 git branch
+git branch -a
 
-# Remote branches that Git is tracking
+# Show remote branches that Git is tracking
 git branch -r
 
-# Show each branch tracking a remote branch
+# Show each branch tracking a remote branch. or
+# Show the current branch and its upstream branch.
 git branch -vv
+
+# Show branches that are not not merging with current branch
+git branch --no-merged
+git branch --merge
+
+# Show the last commit on each branch
+git branch -v
+
+# Show the remote tracking branch for a specific branch
+git branch -vv --list <branch_name>
+
+# Show branches based on a pattern
+git branch --list <pattern>
+# ex: git branch --list 'feature/*'
+# ex: git branch --list "*bug*"
+# ex: git branch --list "*-fix"
+
+# Show current branch name
+git branch --show-current
 
 # Create a new branch
 git branch <branch>
+
+# Create the branch's reflog
+git branch --create-reflog <new-branch>
 
 # Switch to a new branch
 git checkout <branch>
@@ -403,32 +454,22 @@ git switch -
 
 # Create and switch to a new branch
 git checkout -b <branch>
-
-# With Switch
 git switch -c <branch>
-# Note: -c is for create
 
 # Delete a branch
 git branch -d <branch>
 git branch --delete <branch>
+# force delete
+git branch -D <branch>
 
-# Show branches that are not not merging with current branch
-git branch --no-merged
-git branch --merge
-
-# Rename a branch(local)
+# Rename a branch and its reflog
 git branch -m <branch> <branch>
 # Ex: git branch -m <old branch> <new branch>
-
-# Rename a branch(remote)
-git push -u origin <branch>
-# Ex: git push -u origin <new branch>
-# NOTE: old branch will not be deleted, it will be present in the remote too besides the renamed branch. Now delete the old branch.
-git push origin --delete <branch>
-# Ex: git push origin --delete <old branch>
+# Rename a branch even if target exists
+git branch -M <branch>
 ```
 
-## 🎎 Merging branch
+### 🎎 Merge branch
 
 ```bash
 # Merge a branch into the current branch
@@ -442,19 +483,42 @@ git merge <remote|alias>/<branch>
 # Ex: git merge origin/main
 ```
 
-## Tracking branches
+### 🤖 Remote Branch: Tracking, Deleting, Renaming
 
 ```bash
+# Fetch the latest remote branches from the remote repository
+git fetch <remote>
+
+# Create the remote branch and pushing local branch to the remote
+git push origin <local_branch_name>:<remote_branch_name>
+# Ex: git push origin dev:dev
+
 # Track a remote branch
 git branch --track <branch> <remote>/<branch>
-# Ex: git branch --track main origin/main
-
-# Switch to a tracked branch
-git checkout <branch>
+# Push to remote branch that is tracked by local branch
+git push origin HEAD:<branch>
+# Ex: git branch --track dev origin/dev
+# Ex: git push origin HEAD:dev
+# ExL git pull origin dev
 
 # Track and Switch
 git checkout -b <branch> <remote>/<branch>
 # Ex:git checkout -b main origin/main
+
+# Track an existing local branch to an existing remote branch
+git branch --set-upstream-to=<remote>/<remote_branch> <local_branch>
+git branch --set-upstream-to=origin/dracula dragon
+
+git push origin --delete <branch>
+# Ex: git push origin --delete <old branch>
+
+# Rename a remote branch
+git branch -m <old_branch> <new_branch>
+git push <remote> --delete <old_branch>
+git push <remote> <new_branch>
+
+# Unset the upstream info
+git branch --unset-upstream <branch>
 ```
 
 ## ⛅ Remote Repositories
