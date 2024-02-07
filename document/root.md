@@ -1,6 +1,6 @@
 # A Journey With Git To GitHub
 
-[👨‍🎓 sizar corpse](https://github.com/sizarcorpse) | [👨‍🚀 ramiz imran sizar](https://github.com/ramizimran)
+[👨‍🎓 sizar corpse](https://github.com/sizarcorpse)
 
 This document covers every basic command you need to do the vast majority of the things you’ll eventually spend your time doing with Git. By the end of the document, you should be able to configure and initialize a repository, begin and stop tracking files, and stage and commit changes.This document also show you how to set up Git to ignore certain files and file patterns, how to undo mistakes quickly and easily, how to browse the history of your project and view changes between commits, and how to push and pull from remote repositories.
 
@@ -10,28 +10,28 @@ This document covers every basic command you need to do the vast majority of the
 
 - [A Journey With Git To GitHub](#a-journey-with-git-to-github)
   - [📖 Table of Contents](#-table-of-contents)
-  - [🌌 Git Configuration](#-git-configuration)
-  - [🚩 Initializing a Repository](#-initializing-a-repository)
-  - [🚚 Creating Snapshots and Staging](#-creating-snapshots-and-staging)
+  - [Git Configuration](#git-configuration)
+  - [Initializing a Repository](#initializing-a-repository)
+  - [Creating Snapshots and Staging](#creating-snapshots-and-staging)
   - [Git Ignore](#git-ignore)
-  - [📦 Committing Staged](#-committing-staged)
-  - [🔭 Browsing Commit History](#-browsing-commit-history)
-  - [🥼 Diff whats changes on before commit (staged or un-staged)](#-diff-whats-changes-on-before-commit-staged-or-un-staged)
-  - [🗑 Remove, Move \& Rename files](#-remove-move--rename-files)
-  - [📝Revert \& Reset files from the staging area](#revert--reset-files-from-the-staging-area)
-  - [🗑 Stash staging](#-stash-staging)
-  - [🧰 **`git branch`**](#-git-branch)
+  - [Committing Staged](#committing-staged)
+  - [Browsing Commit History](#browsing-commit-history)
+  - [Diff whats changes on before commit (staged or un-staged)](#diff-whats-changes-on-before-commit-staged-or-un-staged)
+  - [Remove, Move \& Rename files](#remove-move--rename-files)
+  - [Revert \& Reset files from the staging area](#revert--reset-files-from-the-staging-area)
+  - [Stash staging](#stash-staging)
+  - [**`git branch`**](#git-branch)
     - [🎎 Merge branch](#-merge-branch)
     - [🤖 Remote Branch: Tracking, Deleting, Renaming](#-remote-branch-tracking-deleting-renaming)
-  - [⛅ Remote Repositories](#-remote-repositories)
-  - [🚀 Push Repositories](#-push-repositories)
-  - [🧯 Pull](#-pull)
-  - [🚓 Fetch Repositories](#-fetch-repositories)
-  - [🧨 Update Remote](#-update-remote)
-  - [🏤 Git Rebase](#-git-rebase)
-  - [🔖Git Tag](#git-tag)
+  - [Remote Repositories](#remote-repositories)
+  - [Push Repositories](#push-repositories)
+  - [Pull](#pull)
+  - [Fetch Repositories](#fetch-repositories)
+  - [Update Remote](#update-remote)
+  - [Git Rebase](#git-rebase)
+  - [Git Tag](#git-tag)
 
-## 🌌 Git Configuration
+## Git Configuration
 
 ```bash
 # View all of settings
@@ -90,7 +90,7 @@ git config --global diff.toolvscode.cmd "code-insiders --wait --diff $LOCAL $REM
 git config --global init.defaultBranch main
 ```
 
-## 🚩 Initializing a Repository
+## Initializing a Repository
 
 ```bash
 # Initializing an existing directory as a Git repository
@@ -112,7 +112,7 @@ git clone -o <name> <url> <name>
 # Ex:git clone -o '<remote-name>' https://github.com/<author>/welcome-to-github <directory-name>
 ```
 
-## 🚚 Creating Snapshots and Staging
+## Creating Snapshots and Staging
 
 ```bash
 
@@ -163,7 +163,7 @@ git add *.txt
 # doc/**/*.pdf
 ```
 
-## 📦 Committing Staged
+## Committing Staged
 
 ```bash
 
@@ -188,7 +188,7 @@ git show HEAD~1
 git commit -p
 ```
 
-## 🔭 Browsing Commit History
+## Browsing Commit History
 
 ```bash
 # Show commit history of the current repository(current branch)
@@ -281,7 +281,7 @@ git log --pretty="%h %an %s"
 git log --pretty=format:"%h %an %s" --graph
 ```
 
-## 🥼 Diff whats changes on before commit (staged or un-staged)
+## Diff whats changes on before commit (staged or un-staged)
 
 ```bash
 # Show changes on before commit(un-staged)
@@ -320,7 +320,7 @@ git difftool --cached
 git diff <branch> <branch>
 ```
 
-## 🗑 Remove, Move & Rename files
+## Remove, Move & Rename files
 
 ```bash
 # Remove a file from the staging area and working dir
@@ -337,7 +337,7 @@ git rm -r <directory>
 git mv <file> <file>.txt
 ```
 
-## 📝Revert & Reset files from the staging area
+## Revert & Reset files from the staging area
 
 ```bash
 # Undo / revert un-staged changes on a file
@@ -377,7 +377,7 @@ git revert -n master~5..master~2
 
 TODO: Different between `git reset` and `git revert` and `git restore`
 
-## 🗑 Stash staging
+## Stash staging
 
 ```bash
 # Stash your changes so you can add them to a different branch.
@@ -405,7 +405,7 @@ git stash drop
 git stash drop <stash_name>
 ```
 
-## 🧰 **`git branch`**
+## **`git branch`**
 
 ```bash
 # Show all branches
@@ -521,7 +521,7 @@ git push <remote> <new_branch>
 git branch --unset-upstream <branch>
 ```
 
-## ⛅ Remote Repositories
+## Remote Repositories
 
 ```bash
 # Show remote repositories/url
@@ -546,7 +546,7 @@ git ls-remote <remote|alias>
 git push --delete <remote|alias> <branch>
 ```
 
-## 🚀 Push Repositories
+## Push Repositories
 
 ```bash
 # Push all changes in the current branch to a remote repository
@@ -557,14 +557,14 @@ git push -u <remote|alias> <branch>
 git push -u <remote|alias> <branch>
 ```
 
-## 🧯 Pull
+## Pull
 
 ```bash
 # Pull all changes from a remote repository
 git pull
 ```
 
-## 🚓 Fetch Repositories
+## Fetch Repositories
 
 ```bash
 # Fetch all changes from a remote repository
@@ -574,14 +574,14 @@ git fetch
 git fetch --all
 ```
 
-## 🧨 Update Remote
+## Update Remote
 
 ```bash
 # Update changes from a remote branch without automatically merging
 git remote update
 ```
 
-## 🏤 Git Rebase
+## Git Rebase
 
 ```bash
 # Rebase a branch onto another branch
@@ -609,7 +609,7 @@ git rebase --interactive --root
 
 ```
 
-## 🔖Git Tag
+## Git Tag
 
 ```bash
 # Show all tags
